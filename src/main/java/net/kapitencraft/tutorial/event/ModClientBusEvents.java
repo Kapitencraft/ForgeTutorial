@@ -1,7 +1,5 @@
 package net.kapitencraft.tutorial.event;
 
-import net.kapitencraft.tutorial.block.ModBlocks;
-import net.kapitencraft.tutorial.block.TestBlock;
 import net.kapitencraft.tutorial.item.CustomItem;
 import net.kapitencraft.tutorial.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +17,6 @@ public class ModClientBusEvents {
 
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        event.register(TestBlock::getColor, ModBlocks.TEST.get());
+        //event.register(TestBlock::getColor, ModBlocks.TEST.get());
     }
 }
