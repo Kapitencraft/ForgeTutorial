@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.kapitencraft.tutorial.advancement.ModCriterionTriggers;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -39,7 +38,6 @@ public class HealCommand {
 
         ServerPlayer player = Objects.requireNonNull(context.getSource().getPlayer(), "command may not be executed from the console!");
         player.heal(amount);
-        ModCriterionTriggers.MANA_CONSUMED.trigger(player, 100);
         return 1;
     }
 }

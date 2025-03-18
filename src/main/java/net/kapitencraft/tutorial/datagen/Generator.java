@@ -20,5 +20,6 @@ public class Generator {
         ExistingFileHelper helper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
         generator.addProvider(true, new ModBlockStateProvider(output, helper));
+        generator.addProvider(true, new ModAdvancementProvider(output, registries, helper));
     }
 }
