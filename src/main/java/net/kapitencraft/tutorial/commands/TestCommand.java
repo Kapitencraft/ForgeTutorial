@@ -14,6 +14,7 @@ public class TestCommand {
 
     private static int testAdvancementTrigger(CommandContext<CommandSourceStack> context) {
         ServerPlayer player = context.getSource().getPlayer();
+        int amount = IntegerArgumentType.getInteger(context, "amount");
         return 1;
     }
 }

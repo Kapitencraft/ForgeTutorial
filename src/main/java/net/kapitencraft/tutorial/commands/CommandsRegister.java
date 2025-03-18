@@ -11,6 +11,7 @@ public class CommandsRegister {
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
         HealCommand.register(event.getDispatcher());
+        TestCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
