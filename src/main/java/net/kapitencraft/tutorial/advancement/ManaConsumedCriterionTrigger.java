@@ -1,49 +1,55 @@
 package net.kapitencraft.tutorial.advancement;
 
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.Criterion;
+import net.kapitencraft.tutorial.TutorialMod;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public class ManaConsumedCriterionTrigger extends SimpleCriterionTrigger<ManaConsumedCriterionTrigger.TriggerInstance> {
+    //IGNORE CHANGES IN THIS FILE; DEGRADING FROM 1.20.2 to 1.20.1 created some issues
+    private static final ResourceLocation LOCATION = TutorialMod.res("mana_consumed");
 
     @Override
-    protected @NotNull TriggerInstance createInstance(JsonObject pJson, Optional<ContextAwarePredicate> pPlayer, DeserializationContext pDeserializationContext) {
+    protected TriggerInstance createInstance(JsonObject pJson, @NotNull ContextAwarePredicate pPredicate, DeserializationContext pDeserializationContext) {
         MinMaxBounds.Ints bounds = MinMaxBounds.Ints.fromJson(pJson.get("bounds"));
-        return new TriggerInstance(pPlayer, bounds);
+        return new TriggerInstance(pPredicate, bounds);
     }
+
 
     public void trigger(ServerPlayer player, int amount) {
         trigger(player, triggerInstance -> triggerInstance.matches(amount));
     }
 
-    public static Criterion<TriggerInstance> any() {
+    public static TriggerInstance any() {
         return create(MinMaxBounds.Ints.ANY);
     }
 
-    public static Criterion<TriggerInstance> atLeast(int min) {
+    public static TriggerInstance atLeast(int min) {
         return create(MinMaxBounds.Ints.atLeast(min));
     }
 
-    private static Criterion<TriggerInstance> create(MinMaxBounds.Ints bounds) {
-        return ModCriterionTriggers.MANA_CONSUMED.createCriterion(new TriggerInstance(Optional.empty(), bounds));
+    private static TriggerInstance create(MinMaxBounds.Ints bounds) {
+        return new TriggerInstance(null, bounds);
+    }
+
+    @Override
+    public ResourceLocation getId() {
+        return LOCATION;
     }
 
     public static class TriggerInstance extends AbstractCriterionTriggerInstance {
         private final MinMaxBounds.Ints bounds;
 
-        @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-        public TriggerInstance(Optional<ContextAwarePredicate> pPlayer, MinMaxBounds.Ints bounds) {
-            super(pPlayer);
+        public TriggerInstance(ContextAwarePredicate pPlayer, MinMaxBounds.Ints bounds) {
+            super(LOCATION, pPlayer);
             this.bounds = bounds;
         }
 
         @Override
-        public @NotNull JsonObject serializeToJson() {
-            JsonObject object = super.serializeToJson();
+        public @NotNull JsonObject serializeToJson(SerializationContext context) {
+            JsonObject object = super.serializeToJson(context);
             object.add("bounds", bounds.serializeToJson());
             return object;
         }

@@ -2,7 +2,6 @@ package net.kapitencraft.tutorial.saved_data;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 
@@ -15,7 +14,7 @@ public class PlayerCounter extends SavedData {
     @Override
     public CompoundTag save(CompoundTag tag) {
         tag.putInt(COUNTER_TAG_ID, counter);
-        return null;
+        return tag;
     }
 
     public PlayerCounter getCounter(Level level) {
@@ -23,11 +22,10 @@ public class PlayerCounter extends SavedData {
             return clientInstance;
         } else {
             ServerLevel serverLevel = (ServerLevel) level;
-            return serverLevel.getDataStorage().computeIfAbsent(new Factory<>(
-                    PlayerCounter::new,
+            return serverLevel.getDataStorage().computeIfAbsent(
                     PlayerCounter::load,
-                    DataFixTypes.PLAYER
-            ), "player_counter");
+                    PlayerCounter::new
+            , "player_counter");
         }
     }
 
