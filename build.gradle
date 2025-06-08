@@ -173,9 +173,7 @@ mixin {
     // MixinGradle Settings
     add sourceSets.main, "${mod_id}.mixin-refmap.json"
     config "${mod_id}.mixins.json"
-
-    debug.export = true
-}
+        }
 
 // Example for how to get properties into the manifest for reading at runtime.
 tasks.named('jar', Jar).configure {
