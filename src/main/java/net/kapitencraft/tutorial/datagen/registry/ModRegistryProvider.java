@@ -12,8 +12,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModRegistryProvider extends DatapackBuiltinEntriesProvider {
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.STRUCTURE, Structures::bootstrap)
             .add(Registries.TEMPLATE_POOL, TemplatePools::bootstrap)
+            .add(Registries.STRUCTURE, Structures::bootstrap)
             .add(Registries.STRUCTURE_SET, StructureSets::bootstrap);
 
     public ModRegistryProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

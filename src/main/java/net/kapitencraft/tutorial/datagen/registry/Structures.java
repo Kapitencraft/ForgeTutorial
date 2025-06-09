@@ -33,15 +33,14 @@ public interface Structures {
     static void bootstrap(BootstapContext<Structure> context) {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         HolderGetter<StructureTemplatePool> templatePools = context.lookup(Registries.TEMPLATE_POOL);
+
         context.register(DEPOT, new JigsawStructure(
                 new Structure.StructureSettings(
                         biomes.getOrThrow(ModTags.Biomes.HAS_DEPOT),
                         Map.of(
-                                MobCategory.MONSTER, new StructureSpawnOverride(
+                                MobCategory.MISC, new StructureSpawnOverride(
                                         StructureSpawnOverride.BoundingBoxType.STRUCTURE,
-                                        WeightedRandomList.create(
-                                                new MobSpawnSettings.SpawnerData(EntityType.ALLAY, 1, 1, 1)
-                                        )
+                                        WeightedRandomList.create(new MobSpawnSettings.SpawnerData(EntityType.ALLAY, 1, 1, 2))
                                 )
                         ),
                         GenerationStep.Decoration.SURFACE_STRUCTURES,
@@ -49,7 +48,7 @@ public interface Structures {
                 ),
                 templatePools.getOrThrow(TemplatePools.DEPOT),
                 1,
-                UniformHeight.of(VerticalAnchor.absolute(60), VerticalAnchor.absolute(70)),
+                UniformHeight.of(VerticalAnchor.BOTTOM, VerticalAnchor.TOP),
                 false,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES
         ));

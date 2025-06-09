@@ -20,6 +20,6 @@ public class ModBiomeTagsProvider extends TagsProvider<Biome> {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tag(ModTags.Biomes.HAS_DEPOT).add(Biomes.PLAINS);
+        tag(ModTags.Biomes.HAS_DEPOT).add(Biomes.PLAINS, Biomes.FOREST);
     }
 }

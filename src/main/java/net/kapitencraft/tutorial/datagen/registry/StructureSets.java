@@ -13,7 +13,7 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 public interface StructureSets {
     ResourceKey<StructureSet> DEPOT = create("depot");
 
-    private static ResourceKey<StructureSet> create(String id) {
+    static ResourceKey<StructureSet> create(String id) {
         return ResourceKey.create(Registries.STRUCTURE_SET, TutorialMod.res(id));
     }
 
@@ -22,7 +22,7 @@ public interface StructureSets {
         context.register(DEPOT, new StructureSet(
                 structures.getOrThrow(Structures.DEPOT),
                 new RandomSpreadStructurePlacement(
-                        20, 4, RandomSpreadType.TRIANGULAR, 1232435235
+                        20, 4, RandomSpreadType.LINEAR, 1243472375
                 )
         ));
     }
