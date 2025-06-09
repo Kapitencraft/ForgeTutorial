@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#tutorial_mod:has_structure/depot",
+  "max_distance_from_center": 80,
+  "project_start_to_heightmap": "MOTION_BLOCKING_NO_LEAVES",
+  "size": 1,
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "minecraft:allay",
+          "maxCount": 1,
+          "minCount": 1,
+          "weight": 1
+        }
+      ]
+    }
+  },
+  "start_height": {
+    "type": "minecraft:uniform",
+    "max_inclusive": {
+      "absolute": 70
+    },
+    "min_inclusive": {
+      "absolute": 60
+    }
+  },
+  "start_pool": "tutorial_mod:depot",
+  "step": "surface_structures",
+  "terrain_adaptation": "bury",
+  "use_expansion_hack": false
+}

@@ -1,5 +1,6 @@
 package net.kapitencraft.tutorial.datagen;
 
+import net.kapitencraft.tutorial.datagen.registry.ModRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -21,5 +22,7 @@ public class Generator {
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
         generator.addProvider(true, new ModBlockStateProvider(output, helper));
         generator.addProvider(true, new ModAdvancementProvider(output, registries, helper));
+        generator.addProvider(true, new ModRegistryProvider(output, registries));
+        generator.addProvider(true, new ModBiomeTagsProvider(output, registries, helper));
     }
 }

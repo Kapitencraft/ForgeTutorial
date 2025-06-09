@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1232435235,
+    "separation": 4,
+    "spacing": 20,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "tutorial_mod:depot",
+      "weight": 1
+    }
+  ]
+}

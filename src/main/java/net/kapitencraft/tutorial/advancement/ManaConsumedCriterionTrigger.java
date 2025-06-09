@@ -31,7 +31,7 @@ public class ManaConsumedCriterionTrigger extends SimpleCriterionTrigger<ManaCon
     }
 
     private static TriggerInstance create(MinMaxBounds.Ints bounds) {
-        return new TriggerInstance(null, bounds);
+        return new TriggerInstance(ContextAwarePredicate.ANY, bounds);
     }
 
     @Override
