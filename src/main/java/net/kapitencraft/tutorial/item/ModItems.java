@@ -18,4 +18,5 @@ public interface ModItems {
     RegistryObject<CustomItem> CUSTOM_ITEM = REGISTRY.register("custom", CustomItem::new);
     Map<ArmorItem.Type, RegistryObject<FrozenBlazeArmorItem>> FROZEN_BLAZE_ARMOR = AbstractArmorItem.createRegistry(REGISTRY, "frozen_blaze", FrozenBlazeArmorItem::new);
     RegistryObject<WizardHatArmorItem> WIZARD_HAT = REGISTRY.register("wizard_hat", WizardHatArmorItem::new);
+    RegistryObject<PaladinShieldItem> PALADIN_SHIELD = REGISTRY.register("paladin_shield", PaladinShieldItem::new);
 }
