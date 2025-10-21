@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
 public class TutorialMod {
-    // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "tutorial_mod";
 
     public static Screen postCommandScreen = null;
@@ -27,7 +26,7 @@ public class TutorialMod {
     public static ResourceLocation res(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
-    // Directly reference a slf4j logger
+
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public TutorialMod() {

@@ -1,0 +1,63 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "forge_data": {
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#texture"
+        },
+        "east": {
+          "forge_data": {
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#texture"
+        },
+        "north": {
+          "forge_data": {
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#texture"
+        },
+        "south": {
+          "forge_data": {
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#texture"
+        },
+        "up": {
+          "forge_data": {
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#texture"
+        },
+        "west": {
+          "forge_data": {
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#texture"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "textures": {
+    "texture": "minecraft:block/diamond_block"
+  }
+}

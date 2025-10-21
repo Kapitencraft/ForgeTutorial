@@ -24,5 +24,6 @@ public class Generator {
         generator.addProvider(true, new ModAdvancementProvider(output, registries, helper));
         generator.addProvider(true, new ModRegistryProvider(output, registries));
         generator.addProvider(true, new ModBiomeTagsProvider(output, registries, helper));
+        generator.addProvider(true, new ModItemModelsProvider(output, helper));
     }
 }
