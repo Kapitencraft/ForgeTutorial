@@ -5,23 +5,23 @@ package net.kapitencraft.tutorial.client.model;// Made with Blockbench 5.0.2
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.kapitencraft.tutorial.TutorialMod;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
 
 public class PaladinShieldModel extends Model {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "paladinshieldmodel"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(TutorialMod.res("paladin_shield"), "main");
 	private final ModelPart plate;
 	private final ModelPart handle;
 
 	public PaladinShieldModel(ModelPart root) {
-        super(RenderType::entitySolid);
-        this.plate = root.getChild("plate");
+		super(RenderType::entitySolid);
+		this.plate = root.getChild("plate");
 		this.handle = root.getChild("handle");
 	}
 

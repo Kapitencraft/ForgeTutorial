@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 public class PaladinShieldItem extends ShieldItem {
     public PaladinShieldItem() {
-        super(new Properties().rarity(Rarity.UNCOMMON).durability(598));
+        super(new Properties().rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -21,6 +21,5 @@ public class PaladinShieldItem extends ShieldItem {
                 return ModBlockEntityWithoutLevelRenderer.INSTANCE;
             }
         });
-        super.initializeClient(consumer);
     }
 }

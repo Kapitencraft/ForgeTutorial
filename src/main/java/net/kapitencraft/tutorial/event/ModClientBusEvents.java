@@ -39,8 +39,8 @@ public class ModClientBusEvents {
 
     @SubscribeEvent
     public static void onFMLClientSetup(FMLClientSetupEvent event) {
-        ItemProperties.register(ModItems.PALADIN_SHIELD.get(), new ResourceLocation("blocking"), (p_174575_, p_174576_, p_174577_, p_174578_) ->
-                p_174577_ != null && p_174577_.isUsingItem() && p_174577_.getUseItem() == p_174575_ ? 1.0F : 0.0F
+        ItemProperties.register(ModItems.PALADIN_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, level, entity, useDur) ->
+                entity != null && entity.isUsingItem() && entity.getUseItem() == itemStack ? 1.0F : 0.0F
         );
     }
 }
