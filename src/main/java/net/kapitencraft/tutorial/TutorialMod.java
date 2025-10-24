@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.kapitencraft.tutorial.attribute.ModAttributes;
 import net.kapitencraft.tutorial.block.ModBlocks;
 import net.kapitencraft.tutorial.item.ModItems;
+import net.kapitencraft.tutorial.mob_effect.ModMobEffects;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
@@ -35,6 +36,7 @@ public class TutorialMod {
         ModAttributes.REGISTRY.register(modEventBus);
         ModItems.REGISTRY.register(modEventBus);
         ModBlocks.REGISTRY.register(modEventBus);
+        ModMobEffects.REGISTRY.register(modEventBus);
 
         //StartupMessageManager.addModMessage("Counting!");
         //ProgressMeter meter = StartupMessageManager.addProgressBar("Counting...", Integer.MAX_VALUE);
