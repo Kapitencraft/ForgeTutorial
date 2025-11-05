@@ -38,4 +38,15 @@ public class EventHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onMobEffectRemove(MobEffectEvent.Expired event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING.get()) {
+            Abilities abilities = player.getAbilities();
+            abilities.mayfly = !player.gameMode.isSurvival(); //set may fly to player being in creative / spectator
+            if (abilities.flying && !abilities.mayfly)
+                abilities.flying = false; //stop flying if no longer permitted
+            player.onUpdateAbilities();
+        }
+    }
+
 }
