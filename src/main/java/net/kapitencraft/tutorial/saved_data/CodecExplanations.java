@@ -11,7 +11,6 @@ import com.mojang.serialization.codecs.PrimitiveCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.kapitencraft.tutorial.TutorialMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
@@ -60,10 +59,6 @@ public class CodecExplanations {
         this.c = c;
         this.d = d;
         this.e = e;
-    }
-
-    public static CodecExplanations load(CompoundTag tag) {
-        return CODEC.parse(NbtOps.INSTANCE, tag).result().orElse(null);
     }
 
     private Tag save() {
