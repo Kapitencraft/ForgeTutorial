@@ -1,3 +1,4 @@
 {
-  "screen.test": "Hello World!"
+  "screen.test": "Hello World!",
+  "container.backpack": "Backpack"
 }

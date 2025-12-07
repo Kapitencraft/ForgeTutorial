@@ -1,10 +1,15 @@
 package net.kapitencraft.tutorial.event;
 
+import net.kapitencraft.tutorial.TutorialMod;
 import net.kapitencraft.tutorial.attribute.ModAttributes;
+import net.kapitencraft.tutorial.item.ModItems;
+import net.kapitencraft.tutorial.item.capability.BackpackCapabilityProvider;
 import net.kapitencraft.tutorial.mob_effect.ModMobEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,6 +51,13 @@ public class EventHandler {
             if (abilities.flying && !abilities.mayfly)
                 abilities.flying = false; //stop flying if no longer permitted
             player.onUpdateAbilities();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
+        if (event.getObject().is(ModItems.BACKPACK.get())) {
+            event.addCapability(TutorialMod.res("backpack"), new BackpackCapabilityProvider());
         }
     }
 

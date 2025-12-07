@@ -19,4 +19,5 @@ public interface ModItems {
     Map<ArmorItem.Type, RegistryObject<FrozenBlazeArmorItem>> FROZEN_BLAZE_ARMOR = AbstractArmorItem.createRegistry(REGISTRY, "frozen_blaze", FrozenBlazeArmorItem::new);
     RegistryObject<WizardHatArmorItem> WIZARD_HAT = REGISTRY.register("wizard_hat", WizardHatArmorItem::new);
     RegistryObject<PaladinShieldItem> PALADIN_SHIELD = REGISTRY.register("paladin_shield", PaladinShieldItem::new);
+    RegistryObject<BackpackItem> BACKPACK = REGISTRY.register("backpack", BackpackItem::new);
 }
