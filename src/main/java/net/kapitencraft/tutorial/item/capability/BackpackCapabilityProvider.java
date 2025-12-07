@@ -2,6 +2,7 @@ package net.kapitencraft.tutorial.item.capability;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
@@ -12,8 +13,8 @@ public class BackpackCapabilityProvider implements ICapabilitySerializable<ListT
     private final BackpackCapability capability;
     private final LazyOptional<BackpackCapability> optional;
 
-    public BackpackCapabilityProvider() {
-        this.capability = new BackpackCapability();
+    public BackpackCapabilityProvider(ItemStack owner) {
+        this.capability = new BackpackCapability(owner);
         this.optional = LazyOptional.of(() -> capability);
     }
 

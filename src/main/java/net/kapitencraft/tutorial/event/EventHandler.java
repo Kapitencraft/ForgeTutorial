@@ -57,7 +57,7 @@ public class EventHandler {
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
         if (event.getObject().is(ModItems.BACKPACK.get())) {
-            event.addCapability(TutorialMod.res("backpack"), new BackpackCapabilityProvider());
+            event.addCapability(TutorialMod.res("backpack"), new BackpackCapabilityProvider(event.getObject()));
         }
     }
 
