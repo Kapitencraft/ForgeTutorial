@@ -12,6 +12,7 @@
     "TutorialMixin"
   ],
   "client": [
-    "client.ChatScreenMixin"
+    "client.ChatScreenMixin",
+    "client.LivingEntityRendererMixin"
   ]
 }

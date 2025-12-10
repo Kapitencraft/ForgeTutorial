@@ -46,7 +46,6 @@ public class ModClientBusEvents {
         );
     }
 
-
     @SubscribeEvent
     public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
         event.register(ModKeyMappings.TOGGLE_POST_SHADER);

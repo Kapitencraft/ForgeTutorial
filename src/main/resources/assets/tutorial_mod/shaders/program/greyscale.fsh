@@ -12,5 +12,5 @@ void main() {
 
     float v = dot(vec3(.2126, .7152, .0722), InTexel.rgb);
 
-    fragColor = vec4(v, v, v, 1.0);
+    fragColor = vec4(v, v, v, InTexel.a);
 }
