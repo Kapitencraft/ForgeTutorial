@@ -11,25 +11,25 @@ import org.jetbrains.annotations.Nullable;
 
 public class BackpackCapabilityProvider implements ICapabilitySerializable<ListTag> {
     private final BackpackCapability capability;
-    private final LazyOptional<BackpackCapability> optional;
+    private final LazyOptional<BackpackCapability> opt;
 
-    public BackpackCapabilityProvider(ItemStack owner) {
-        this.capability = new BackpackCapability(owner);
-        this.optional = LazyOptional.of(() -> capability);
+    public BackpackCapabilityProvider(ItemStack stack) {
+        this.capability = new BackpackCapability(stack);
+        this.opt = LazyOptional.of(() -> this.capability);
+    }
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction direction) {
+        return BackpackCapability.CAPABILITY.orEmpty(capability, opt);
     }
 
     @Override
     public ListTag serializeNBT() {
-        return capability.serialize();
+        return capability.serializeNBT();
     }
 
     @Override
-    public void deserializeNBT(ListTag nbt) {
-        this.capability.deserialize(nbt);
-    }
-
-    @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return BackpackCapability.CAPABILITY.orEmpty(cap, optional);
+    public void deserializeNBT(ListTag tags) {
+        this.capability.deserializeNBT(tags);
     }
 }

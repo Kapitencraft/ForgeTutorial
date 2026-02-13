@@ -17,6 +17,6 @@ public class BackpackItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
         itemInHand.getCapability(BackpackCapability.CAPABILITY).ifPresent(pPlayer::openMenu);
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return InteractionResultHolder.sidedSuccess(itemInHand, pLevel.isClientSide);
     }
 }

@@ -19,29 +19,30 @@ import org.jetbrains.annotations.Nullable;
 public class BackpackCapability implements MenuProvider {
     public static final Capability<BackpackCapability> CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
-    private final SimpleContainer inventory;
-    private final ItemStack owner;
+    private final ItemStack stack;
 
-    public BackpackCapability(ItemStack owner) {
-        this.owner = owner;
-        this.inventory = new SimpleContainer(27);
-    }
+    private final SimpleContainer container;
 
-    public ListTag serialize() {
-        return inventory.createTag();
-    }
-
-    public void deserialize(ListTag nbt) {
-        inventory.fromTag(nbt);
+    public BackpackCapability(ItemStack stack) {
+        this.stack = stack;
+        this.container = new SimpleContainer(27);
     }
 
     @Override
     public Component getDisplayName() {
-        return owner.getHoverName();
+        return stack.getHoverName();
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return ChestMenu.threeRows(pContainerId, pPlayerInventory, this.inventory);
+    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        return ChestMenu.threeRows(i, inventory, container);
+    }
+
+    public ListTag serializeNBT() {
+        return container.createTag();
+    }
+
+    public void deserializeNBT(ListTag tags) {
+        container.fromTag(tags);
     }
 }

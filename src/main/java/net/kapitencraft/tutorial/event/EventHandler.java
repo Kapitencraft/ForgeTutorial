@@ -60,5 +60,4 @@ public class EventHandler {
             event.addCapability(TutorialMod.res("backpack"), new BackpackCapabilityProvider(event.getObject()));
         }
     }
-
 }
