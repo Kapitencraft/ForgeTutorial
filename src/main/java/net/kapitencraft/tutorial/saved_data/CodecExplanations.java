@@ -11,10 +11,10 @@ import com.mojang.serialization.codecs.PrimitiveCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.kapitencraft.tutorial.TutorialMod;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,7 +39,7 @@ public class CodecExplanations {
                     Codec.INT.fieldOf("a").forGetter(i -> i.a),
                     Codec.STRING.fieldOf("b").forGetter(i -> i.b),
                     UUID_CODEC.fieldOf("c").forGetter(i -> i.c),
-                    ForgeRegistries.ITEMS.getCodec().fieldOf("d").forGetter(i -> i.d),
+                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("d").forGetter(i -> i.d),
                     DataType.CODEC.fieldOf("e").forGetter(i -> i.e)
             ).apply(codecExplanationsInstance, CodecExplanations::new)
     );

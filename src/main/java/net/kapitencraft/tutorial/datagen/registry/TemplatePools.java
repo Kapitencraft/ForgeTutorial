@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import net.kapitencraft.tutorial.TutorialMod;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
@@ -19,7 +19,7 @@ public interface TemplatePools {
         return ResourceKey.create(Registries.TEMPLATE_POOL, TutorialMod.res(id));
     }
 
-    static void bootstrap(BootstapContext<StructureTemplatePool> context) {
+    static void bootstrap(BootstrapContext<StructureTemplatePool> context) {
         HolderGetter<StructureTemplatePool> templatePools = context.lookup(Registries.TEMPLATE_POOL);
         context.register(DEPOT, new StructureTemplatePool(
                 templatePools.getOrThrow(Pools.EMPTY),
