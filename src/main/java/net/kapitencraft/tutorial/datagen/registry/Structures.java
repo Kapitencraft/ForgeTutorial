@@ -4,7 +4,7 @@ import net.kapitencraft.tutorial.ModTags;
 import net.kapitencraft.tutorial.TutorialMod;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.EntityType;
@@ -30,7 +30,7 @@ public interface Structures {
         return ResourceKey.create(Registries.STRUCTURE, TutorialMod.res(id));
     }
 
-    static void bootstrap(BootstapContext<Structure> context) {
+    static void bootstrap(BootstrapContext<Structure> context) {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         HolderGetter<StructureTemplatePool> templatePools = context.lookup(Registries.TEMPLATE_POOL);
 

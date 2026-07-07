@@ -1,32 +1,31 @@
 package net.kapitencraft.tutorial.event;
 
-import net.kapitencraft.tutorial.TutorialMod;
+import net.kapitencraft.tutorial.advancement.ModCriterionTriggers;
 import net.kapitencraft.tutorial.attribute.ModAttributes;
-import net.kapitencraft.tutorial.item.ModItems;
-import net.kapitencraft.tutorial.item.capability.BackpackCapabilityProvider;
 import net.kapitencraft.tutorial.mob_effect.ModMobEffects;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class EventHandler {
 
     @SubscribeEvent
     public static void increaseHealingFromAttribute(LivingHealEvent event) {
-        double attrVal = ModAttributes.getAttributeValue(event.getEntity(), ModAttributes.HEAL_ATTRIBUTE.get());
+        double attrVal = ModAttributes.getAttributeValue(event.getEntity(), ModAttributes.HEAL_ATTRIBUTE);
         if (attrVal != -1) event.setAmount((float) (event.getAmount() * (1 + attrVal / 100)));
     }
 
     @SubscribeEvent
     public static void onMobEffectAdded(MobEffectEvent.Added event) {
-        if (event.getEntity() instanceof Player player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING.get()) {
+        if (event.getEntity() instanceof Player player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING) {
             player.getAbilities().mayfly = true;
             player.onUpdateAbilities();
         }
@@ -34,7 +33,7 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void onMobEffectRemove(MobEffectEvent.Remove event) {
-        if (event.getEntity() instanceof ServerPlayer player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING.get()) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING) {
             Abilities abilities = player.getAbilities();
             abilities.mayfly = !player.gameMode.isSurvival(); //set may fly to player being in creative / spectator
             if (abilities.flying && !abilities.mayfly)
@@ -45,7 +44,7 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void onMobEffectRemove(MobEffectEvent.Expired event) {
-        if (event.getEntity() instanceof ServerPlayer player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING.get()) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getEffectInstance().getEffect() == ModMobEffects.FLYING) {
             Abilities abilities = player.getAbilities();
             abilities.mayfly = !player.gameMode.isSurvival(); //set may fly to player being in creative / spectator
             if (abilities.flying && !abilities.mayfly)
@@ -55,9 +54,13 @@ public class EventHandler {
     }
 
     @SubscribeEvent
-    public static void onAttachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
-        if (event.getObject().is(ModItems.BACKPACK.get())) {
-            event.addCapability(TutorialMod.res("backpack"), new BackpackCapabilityProvider(event.getObject()));
-        }
+    public static void addAttributesToEntities(EntityAttributeModificationEvent event) {
+        event.add(EntityType.PLAYER, ModAttributes.HEAL_ATTRIBUTE);
+        event.add(EntityType.PLAYER, ModAttributes.MANA);
+    }
+
+    @SubscribeEvent
+    public static void onFMLCommonSetup(FMLCommonSetupEvent event) {
+        ModCriterionTriggers.init();
     }
 }

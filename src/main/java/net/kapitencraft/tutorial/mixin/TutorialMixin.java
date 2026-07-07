@@ -39,9 +39,4 @@ public abstract class TutorialMixin {
     private ItemStack modifyIn(ItemStack stack) {
         return new ItemStack(Items.DIAMOND).copyWithCount(stack.getCount());
     }
-
-    @Redirect(method = "getDigSpeed", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getBlockEfficiency(Lnet/minecraft/world/entity/LivingEntity;)I"))
-    private int getEffiProxy(LivingEntity living) {
-        return EnchantmentHelper.getBlockEfficiency(living) + EnchantmentHelper.getEnchantmentLevel(Enchantments.BLOCK_FORTUNE, living);
-    }
 }

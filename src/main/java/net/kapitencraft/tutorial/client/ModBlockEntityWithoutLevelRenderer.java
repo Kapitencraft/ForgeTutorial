@@ -44,7 +44,7 @@ public class ModBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelR
             pPoseStack.pushPose();
             pPoseStack.scale(1, -1, -1);
             VertexConsumer consumer = ItemRenderer.getFoilBufferDirect(pBuffer, this.paladinShieldModel.renderType(PALADIN_MODEL_TEXTURE), true, pStack.hasFoil());
-            this.paladinShieldModel.renderToBuffer(pPoseStack, consumer, pPackedLight, pPackedOverlay, 1, 1, 1, 1);
+            this.paladinShieldModel.renderToBuffer(pPoseStack, consumer, pPackedLight, pPackedOverlay, -1);
             pPoseStack.popPose();
         }
     }

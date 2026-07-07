@@ -1,11 +1,12 @@
 package net.kapitencraft.tutorial.commands;
 
-import net.minecraftforge.client.event.RegisterClientCommandsEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+
+@EventBusSubscriber
 public class CommandsRegister {
 
     @SubscribeEvent

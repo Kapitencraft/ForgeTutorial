@@ -5,19 +5,17 @@ import net.kapitencraft.tutorial.item.armor.AbstractArmorItem;
 import net.kapitencraft.tutorial.item.armor.FrozenBlazeArmorItem;
 import net.kapitencraft.tutorial.item.armor.WizardHatArmorItem;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Map;
 
 public interface ModItems {
-    DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, TutorialMod.MOD_ID);
+    DeferredRegister.Items REGISTRY = DeferredRegister.createItems(TutorialMod.MOD_ID);
 
-    RegistryObject<CustomItem> CUSTOM_ITEM = REGISTRY.register("custom", CustomItem::new);
-    Map<ArmorItem.Type, RegistryObject<FrozenBlazeArmorItem>> FROZEN_BLAZE_ARMOR = AbstractArmorItem.createRegistry(REGISTRY, "frozen_blaze", FrozenBlazeArmorItem::new);
-    RegistryObject<WizardHatArmorItem> WIZARD_HAT = REGISTRY.register("wizard_hat", WizardHatArmorItem::new);
-    RegistryObject<PaladinShieldItem> PALADIN_SHIELD = REGISTRY.register("paladin_shield", PaladinShieldItem::new);
-    RegistryObject<BackpackItem> BACKPACK = REGISTRY.register("backpack", BackpackItem::new);
+    DeferredItem<CustomItem> CUSTOM_ITEM = REGISTRY.register("custom", CustomItem::new);
+    Map<ArmorItem.Type, DeferredItem<FrozenBlazeArmorItem>> FROZEN_BLAZE_ARMOR = AbstractArmorItem.createRegistry(REGISTRY, "frozen_blaze", FrozenBlazeArmorItem::new);
+    DeferredItem<WizardHatArmorItem> WIZARD_HAT = REGISTRY.register("wizard_hat", WizardHatArmorItem::new);
+    DeferredItem<PaladinShieldItem> PALADIN_SHIELD = REGISTRY.register("paladin_shield", PaladinShieldItem::new);
+    DeferredItem<BackpackItem> BACKPACK = REGISTRY.registerItem("backpack", p -> new BackpackItem(p, 27));
 }

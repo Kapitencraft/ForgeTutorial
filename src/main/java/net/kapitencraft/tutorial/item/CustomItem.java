@@ -1,28 +1,22 @@
 package net.kapitencraft.tutorial.item;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
+import net.kapitencraft.tutorial.TutorialMod;
 import net.kapitencraft.tutorial.attribute.ModAttributes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 public class CustomItem extends Item {
     public CustomItem() {
-        super(new Properties().rarity(Rarity.RARE).durability(100000));
-    }
-
-    @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
-        HashMultimap<Attribute, AttributeModifier> multimap = HashMultimap.create(super.getAttributeModifiers(slot, stack));
-        if (slot != EquipmentSlot.MAINHAND) return multimap;
-        multimap.put(ModAttributes.HEAL_ATTRIBUTE.get(), new AttributeModifier("Heal Modifier", 100, AttributeModifier.Operation.ADDITION));
-        return multimap;
+        super(new Properties().rarity(Rarity.RARE)
+                .attributes(ItemAttributeModifiers.builder()
+                        .add(ModAttributes.HEAL_ATTRIBUTE, new AttributeModifier(TutorialMod.res("heal"), 100, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).build())
+                .durability(100000));
     }
 
     public static int getColor(ItemStack stack, int index) {
