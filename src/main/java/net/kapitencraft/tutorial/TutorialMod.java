@@ -7,13 +7,8 @@ import net.kapitencraft.tutorial.item.ModItems;
 import net.kapitencraft.tutorial.mob_effect.ModMobEffects;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -49,21 +44,5 @@ public class TutorialMod {
         //    }
         //};
         //meter.complete();
-
-        modEventBus.addListener(CommonListener::commonSetupListener);
-    }
-
-    public static class CommonListener {
-        @SubscribeEvent()
-        public static void commonSetupListener(FMLCommonSetupEvent event) {
-
-        }
-    }
-
-    public static class ItemHolder {
-        @SubscribeEvent
-        public void onItemExpired(ItemExpireEvent event) {
-
-        }
     }
 }
