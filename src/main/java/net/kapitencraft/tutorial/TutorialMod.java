@@ -49,21 +49,5 @@ public class TutorialMod {
         //    }
         //};
         //meter.complete();
-
-        modEventBus.addListener(CommonListener::commonSetupListener);
-    }
-
-    public static class CommonListener {
-        @SubscribeEvent()
-        public static void commonSetupListener(FMLCommonSetupEvent event) {
-
-        }
-    }
-
-    public static class ItemHolder {
-        @SubscribeEvent
-        public void onItemExpired(ItemExpireEvent event) {
-
-        }
     }
 }
