@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class TestBlock extends Block {
     public TestBlock() {
-        super(Properties.copy(Blocks.AMETHYST_BLOCK));
+        super(Properties.ofFullCopy(Blocks.AMETHYST_BLOCK));
     }
 
 

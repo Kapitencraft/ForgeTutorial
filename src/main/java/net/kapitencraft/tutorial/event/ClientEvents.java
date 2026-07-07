@@ -1,7 +1,6 @@
 package net.kapitencraft.tutorial.event;
 
 import net.kapitencraft.tutorial.client.ModBlockEntityWithoutLevelRenderer;
-import net.kapitencraft.tutorial.client.ModKeyMappings;
 import net.kapitencraft.tutorial.client.model.PaladinShieldModel;
 import net.kapitencraft.tutorial.item.CustomItem;
 import net.kapitencraft.tutorial.item.ModItems;
@@ -11,16 +10,16 @@ import net.kapitencraft.tutorial.item.armor.client.model.FrozenBlazeArmorModel;
 import net.kapitencraft.tutorial.item.armor.client.model.WizardHatModel;
 import net.kapitencraft.tutorial.item.armor.client.provider.ArmorModelProvider;
 import net.kapitencraft.tutorial.item.armor.client.provider.SimpleModelProvider;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -29,14 +28,6 @@ import java.util.Map;
 
 @EventBusSubscriber
 public class ClientEvents {
-
-    @SubscribeEvent
-    public static void onTickClientTick(ClientTickEvent.Post event) {
-        while (ModKeyMappings.TOGGLE_POST_SHADER.consumeClick()) {
-            CompoundTag data = Minecraft.getInstance().player.getPersistentData();
-            data.putBoolean("isPetrified", !data.getBoolean("isPetrified"));
-        }
-    }
 
     @SubscribeEvent
     public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
@@ -82,10 +73,5 @@ public class ClientEvents {
         ItemProperties.register(ModItems.PALADIN_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (itemStack, level, entity, useDur) ->
                 entity != null && entity.isUsingItem() && entity.getUseItem() == itemStack ? 1.0F : 0.0F
         );
-    }
-
-    @SubscribeEvent
-    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
-        event.register(ModKeyMappings.TOGGLE_POST_SHADER);
     }
 }
