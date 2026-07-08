@@ -60,17 +60,6 @@ neoForge {
             programArguments.addAll '--username', 'Kapitencraft', '--uuid', '00c930fd-9d29-44ca-b614-e5ce6e8bd457'
         }
 
-        kaupenClient {
-            client()
-            programArguments.addAll '--username', 'Kaupenjoe', '--uuid', '665ad10f-5548-4985-986b-b642732ddce0'
-        }
-
-        quickClient {
-            client()
-            programArguments.addAll '--username', 'Kapitencraft', '--uuid', '00c930fd-9d29-44ca-b614-e5ce6e8bd457',
-                    '--quickPlaySingleplayer', 'New World'
-        }
-
         server {
             server()
             programArgument '--nogui'
