@@ -6,6 +6,7 @@ import net.kapitencraft.tutorial.attribute.ModAttributes;
 import net.kapitencraft.tutorial.block.ModBlocks;
 import net.kapitencraft.tutorial.item.ModDataComponents;
 import net.kapitencraft.tutorial.item.ModItems;
+import net.kapitencraft.tutorial.item.armor.ModArmorMaterials;
 import net.kapitencraft.tutorial.mob_effect.ModMobEffects;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
@@ -38,6 +39,7 @@ public class TutorialMod {
         ModMobEffects.REGISTRY.register(modEventBus);
         ModCriterionTriggers.REGISTRY.register(modEventBus);
         ModDataComponents.REGISTRY.register(modEventBus);
+        ModArmorMaterials.REGISTRY.register(modEventBus);
 
         //StartupMessageManager.addModMessage("Counting!");
         //ProgressMeter meter = StartupMessageManager.addProgressBar("Counting...", Integer.MAX_VALUE);
